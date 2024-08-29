@@ -44,8 +44,8 @@ EXPOSE 3000
 ENV SB_HOSTNAME 0.0.0.0
 ENV SB_FOLDER /space
 
-# Copy the bundled version of silverbullet into the container
-ADD ./dist/silverbullet.js /silverbullet.js
+ADD . ./
+RUN deno task build && deno task bundle && cp ./dist/silverbullet.js /silverbullet.js
 # As well as the docker-entrypoint.sh script
 ADD ./docker-entrypoint.sh /docker-entrypoint.sh
 
